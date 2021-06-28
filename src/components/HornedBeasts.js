@@ -17,7 +17,7 @@ class HornedBeasts extends React.Component{
     }
     render(){
         return(
-        
+        <div className = 'beast'>
             <Card style={{ width: '18rem' }}>
             <Card.Img onClick={this.increaseLikes} variant="top" src={this.props.image_url} />
             <Card.Body>
@@ -31,6 +31,7 @@ class HornedBeasts extends React.Component{
                 
             </Card.Body>
         </Card>
-        )}
+   </div>
+    )}
 }
 export default HornedBeasts;

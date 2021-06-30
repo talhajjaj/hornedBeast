@@ -1,37 +1,58 @@
-import React from 'react';
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card'
-class HornedBeasts extends React.Component{
-    constructor(props){
+import Card from 'react-bootstrap/Card';
+import SelectedBeast from './SelectedBeast';
+
+
+class HornedBeast extends React.Component {
+
+    constructor(props) {
         super(props);
-        this.state={
-            numberOfLikes:0
+
+        this.state = {
+            click: 0
         }
+
     }
 
-    increaseLikes=() =>{
+    clickFunc = () => {
         this.setState({
-            numberOfLikes:this.state.numberOfLikes +1
-
+            click: this.state.click + 1
         })
     }
-    render(){
-        return(
-        <div className = 'beast'>
-            <Card style={{ width: '18rem' }}>
-            <Card.Img onClick={this.increaseLikes} variant="top" src={this.props.image_url} />
-            <Card.Body>
-                <Card.Title>{this.props.title}☘️</Card.Title>
-                <Card.Text>
-                press on your favorite beast 🦄🦄
-                </Card.Text>
-                <Card.Text>
-                Likes : 💖 {this.state.numberOfLikes} 💖
-                </Card.Text>
+    
+    decrease = () =>{
+        this.setState({
+            click: this.state.click - 1
+        })
+    }
+
+
+
+    render() {
+        return (
+            <div style={{ textAlign: "center" }}>
                 
-            </Card.Body>
-        </Card>
-   </div>
-    )}
+                
+                <Card style={{ width: '18rem', textAlign: "center" }}>
+                    <Card.Img variant="top" src={this.props.image_url} alt={"alsa"} width={300} />
+                    <Card.Body>
+                        <Card.Title> {this.props.title} </Card.Title>
+                        <Card.Text>
+                            {this.props.description}
+                        </Card.Text>
+                        <Card.Text>
+                            Number of Selects {this.state.click}
+                        </Card.Text>
+                        <SelectedBeast selectFun={this.clickFunc} decrease={this.decrease}  img_src={this.props.image_url} img_desc={this.props.description} img_title={this.props.title} />
+                    </Card.Body>
+                </Card>
+
+
+            </div>
+        )
+    }
 }
-export default HornedBeasts;
+
+
+export default HornedBeast;
